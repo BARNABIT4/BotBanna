@@ -23,9 +23,9 @@ bot.on('message' ,function(message){
 
 
 bot.on('message', message => {
-	if(message.conten[0] === prefix) {
+	if(message.content[0] === prefix) {
 		let splitMessage = message.content.split(" ");
-		if(splitMessage[0] = "'play") {
+		if(splitMessage[0] = "play") {
 			if(splitMessage.length === 2)
 			{
 				if(message.member.voiceChannel)
