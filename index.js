@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 var prefix = process.env.BOT_PREFIX
 bot.login(process.env.BOT_TOKEN);
-
+var dispatcher;
 // https://discordapp.com/oauth2/authorize?client_id=567819120708550735&permissions=8&scope=bot 
 
 // cd /storage/emulated/0/Documents/Banna
@@ -22,7 +22,42 @@ bot.on('message' ,function(message){
 
 
 
+bot.on('message', message => {
+	if(message.conten[0] === prefix) {
+		let splitMessage = message.content.split(" ");
+		if(splitMessage[0] = "'play") {
+			if(splitMessage.length === 2)
+			{
+				if(message.member.voiceChannel)
+				{
+					message.member.voiceChannel.join().then(connection => {
+						dispatcher = connection.playArbitaryInput(splitMessage[1]);
 
+						dispatcher.on('error', e => {
+							console.log(e);
+								});
+						dispatcher.on('error', e => {
+							dispatcher = undefined;
+							console.log('fin du son');
+								});
+							})catch(console.log);
+						}
+						else
+							sendError(message, "Erreur, Vous devez d'abord rejoindre un canal vocal");
+					}
+					else
+						sendError(message, "Erreur, Problème dans les paramètres");
+				}
+				else if(splitmessage[0] === "'pause") {
+					if(dispatcher !== undefined)
+						dispatcher.pause();
+				}
+				else if(splitmessage[0] === "'resume") {
+					if(dispatcher !== undefined)
+						dispatcher.resume();
+			}
+		}
+	});
 
 
 
