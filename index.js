@@ -18,55 +18,6 @@ bot.on('message' ,function(message){
 	message.channel.send('pong')
 	});
 
-
-
-
-
-bot.on('message', message => {
-	if(message.content[0] === prefix) {
-		let splitMessage = message.content.split(" ");
-		if(splitMessage[0] = "play") {
-			if(splitMessage.length === 2)
-			{
-				if(message.member.voiceChannel)
-				{
-					message.member.voiceChannel.join().then(connection => {
-						dispatcher = connection.playArbitaryInput(splitMessage[1]);
-
-						dispatcher.on('error', e => {
-							console.log(e);
-								});
-						dispatcher.on('error', e => {
-							dispatcher = undefined;
-							console.log('fin du son');
-								});
-							});
-						}
-						else
-							sendError(message, "Erreur, Vous devez d'abord rejoindre un canal vocal");
-					}
-					else
-						sendError(message, "Erreur, Problème dans les paramètres");
-				}
-				else if(splitmessage[0] === "'pause") {
-					if(dispatcher !== undefined)
-						dispatcher.pause();
-				}
-				else if(splitmessage[0] === "'resume") {
-					if(dispatcher !== undefined)
-						dispatcher.resume();
-			}
-		}
-	});
-
-
-
-
-
-
-
-
-
 bot.on('message' ,function(message){
 const args = message.content.slice(prefix.length).split(/ +/);
 const command = args.shift().toLowerCase();
