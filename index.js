@@ -40,7 +40,7 @@ bot.on('message', message => {
 							dispatcher = undefined;
 							console.log('fin du son');
 								});
-							})catch(console.log);
+							});
 						}
 						else
 							sendError(message, "Erreur, Vous devez d'abord rejoindre un canal vocal");
