@@ -2,14 +2,13 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 var prefix = process.env.BOT_PREFIX
 bot.login(process.env.BOT_TOKEN);
-var dispatcher;
 // https://discordapp.com/oauth2/authorize?client_id=567819120708550735&permissions=8&scope=bot 
 
 // cd /storage/emulated/0/Documents/Banna
 
 bot.on('ready' ,function(){
 	console.log("le bot est connecté avec succès" )
-	bot.user.setActivity ( " Bot ", { type : "STREAMING" })
+	bot.user.setActivity (" type 'help ")
 	
 	}) 
 
@@ -188,7 +187,13 @@ bot.on('message' ,function(message){
   member.addRole(mute_role); // <- this assign the role
   setTimeout(() => {member.removeRole(mute_role);}, 900  * 1000); // <- sets a timeout to unmute the user.                                                     V this is where the URL or the local path goes                                    V
   message.channel.send(` ${member} a été réduit au silence pour 15 minutes.`, {file: "https://lumiere-a.akamaihd.net/v1/images/databank_forcechoke_01_169_93e4b0cf.jpeg"});
-}
+
+	}else message.contentstartsWith(prefix + "unmute")
+		message.delete()
+	let mute_role = message.guild.roles.find("name", "Muted"); // this is where you can replace the role name
+	let member = message.mentions.members.first();
+		member.removeRole(mute_role);
+
 });
 
 bot.on('message' ,function(message){
