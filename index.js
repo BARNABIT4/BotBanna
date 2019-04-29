@@ -71,15 +71,6 @@ bot.on('message', function(message) {
 		}
 	});
 	
-bot.on('message', function(message) {
-    if(message.content.includes(prefix + 'nuke')){
-        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas la permission");
-			message.delete()
-			message.channel.bulkDelete(9999999999).then(() => {
-			
-			})
-		}
-	});
 
 bot.on('message' ,function(message){
 	if(message.content.includes(prefix + 'help')){
