@@ -49,6 +49,9 @@ const command = args.shift().toLowerCase();
 
 		if(member.roles.has(grole.id)) return message.reply("L'utilisateur a déjà le role"), grole.name;
 	member.addRole(grole.id);
+	
+	}
+});
 
 
 bot.on('message', message => {
@@ -175,23 +178,7 @@ bot.on('message', message => {
 });
 
 
-bot.on('guildMemberAdd', member =>{
-    let embed = new Discord.RichEmbed()
-        .setDescription(':tada: **' + member.user.username + '** a rejoint ')
-        .setFooter('Nous sommes désormais :' + member.guild.memberCount)
-    member.guild.channels.get('571478998211624962').send(embed) // METTRE LID DU CHANNEL
-	let jrole = member.guild.roles.find('name', 'Membre');
-    member.addRole(jrole)// METTRE LID DU ROLE
- 
-});
- 
-bot.on('guildMemberRemove', member =>{
-    let embed = new Discord.RichEmbed()
-        .setDescription(':cry: **' + member.user.username + '** a quitté ')
-        .setFooter('Nous sommes désormais :' + member.guild.memberCount)
-    member.guild.channels.get('571478998211624962').send(embed)
- 
-});
+
 
 bot.on('message' ,function(message){
 	if(message.content.includes(prefix + 'mute')){
