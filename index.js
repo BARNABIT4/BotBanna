@@ -4,13 +4,10 @@ var prefix = process.env.BOT_PREFIX
 bot.login(process.env.BOT_TOKEN);
 // https://discordapp.com/oauth2/authorize?client_id=567819120708550735&permissions=8&scope=bot 
 
-// cd /storage/emulated/0/Documents/Banna
-
 bot.on('ready' ,function(){
 	console.log("le bot est connecté avec succès" )
-	bot.user.setActivity (" type 'help ")
-	
-	}) 
+	bot.user.setActivity("Prefix 'help ", { type: 'STREAMING' })
+	});
 
 bot.on('message' ,function(message){
 	if(message.content.startsWith('ping'))
@@ -45,7 +42,6 @@ bot.on('message', message => {
     if (user) {
       const member = message.guild.member(user);
       if (member) {
-
         member.ban({
           reason: 'They were bad!',
         }).then(() => {
@@ -55,7 +51,7 @@ bot.on('message', message => {
           console.error(err);
         });
       } else {
-        message.reply('That user isn\'t in this guild!');
+        message.reply("l'utilisateur n'existe pas");
       }
     } else {
       message.reply('You didn\'t mention the user to ban!');
@@ -70,6 +66,16 @@ bot.on('message', function(message) {
 	if(!args[0]) return message.channel.send("Vous n'avez pas défini le nombre de messages a supprimer")
 			message.delete()
 			message.channel.bulkDelete(args[0]).then(() => {
+			
+			})
+		}
+	});
+	
+bot.on('message', function(message) {
+    if(message.content.includes(prefix + 'nuke')){
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas la permission");
+			message.delete()
+			message.channel.bulkDelete(9999999999).then(() => {
 			
 			})
 		}
