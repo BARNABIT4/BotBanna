@@ -41,13 +41,10 @@ const command = args.shift().toLowerCase();
 	if(command === 'sr'){
 	message.delete()
 	let member = message.guild.member(message.mentions.users.first()) || message.guild.member.get(args[0]);
-		if(!member) return message.reply("il faut mentionner une personne pour lui ajouté un role");
 	let role = args.join(" ").slice(22);
-		if(!role) return message.reply("il faut mettre le nom d'un role :warning:");
 	let grole = message.guild.roles.find('name', role);
-		if(!grole) return message.reply("role introuvable :warning:");
 
-		if(member.roles.has(grole.id)) return message.reply("L'utilisateur a déjà le role"), grole.name;
+		if(member.roles.has(grole.id)) 
 	member.addRole(grole.id);
 	
 	}
