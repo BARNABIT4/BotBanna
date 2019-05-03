@@ -38,7 +38,7 @@ const command = args.shift().toLowerCase();
 bot.on('message' ,function(message){
 const args = message.content.slice(prefix.length).split(/ +/);
 const command = args.shift().toLowerCase();
-	if(command === 'grole'){
+	if(command === 'setr'){
 	message.delete()
 	let member = message.guild.member(message.mentions.users.first()) || message.guild.member.get(args[0]);
 		if(!member) return message.reply("");
