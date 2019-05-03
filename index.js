@@ -49,7 +49,8 @@ const command = args.shift().toLowerCase();
 
 		if(member.roles.has(grole.id)) return message.reply(""), grole.name;
 	member.addRole(grole.id);
-
+	}
+});
 
 bot.on('message', message => {
   if (!message.guild) return;
