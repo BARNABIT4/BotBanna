@@ -36,13 +36,19 @@ const command = args.shift().toLowerCase();
 
 
 bot.on('message' ,function(message){
-	if(message.content.includes(prefix + 'setr')){
-  message.delete()
-  let role = message.guild.roles.find("name", "Vice-président"); // this is where you can replace the role name
-  let member = message.guild.member(message.mentions.users.first())
-  member.addRole(role); // <- this assign the role
-}
-});
+const args = message.content.slice(prefix.length).split(/ +/);
+const command = args.shift().toLowerCase();
+	if(command === 'grole'){
+	message.delete()
+	let member = message.guild.member(message.mentions.users.first()) || message.guild.member.get(args[0]);
+		if(!member) return message.reply("");
+	let role = args.join(" ").slice(22);
+		if(!role) return message.reply("");
+	let grole = message.guild.roles.find('name', role);
+		if(!grole) return message.reply("");
+
+		if(member.roles.has(grole.id)) return message.reply(""), grole.name;
+	member.addRole(grole.id);
 
 
 bot.on('message', message => {
